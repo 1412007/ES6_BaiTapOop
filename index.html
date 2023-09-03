@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Danh Sách Người Dùng</h1>
+      <div class="row">
+        <div class="col-8">
+          <button
+            id="btnThem"
+            type="button"
+            class="btn btn-warning mb-3 text-white"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Thêm Người Dùng
+          </button>
+        </div>
+        <div class="col-4">
+          <div class="form-group row">
+            <label for="selType" class="col-sm-2 col-form-label">Show</label>
+            <div class="col-sm-10">
+              <select class="form-select" id="selType">
+                <option selected="">Chọn loại</option>
+                <option value="all">Tất cả</option>
+                <option value="student">Học sinh</option>
+                <option value="employee">Nhân viên</option>
+                <option value="customer">Khách hàng</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Table -->
+      <div class="table-responsive userTable">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr class="bg-warning text-white">
+              <th>ID</th>
+              <th>Họ Tên</th>
+              <th>Email</th>
+              <th>Địa chỉ</th>
+              <th>Loại</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tbodyUser"></tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Form -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Thêm Người Dùng</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="needs-validation" id="userForm">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="userID">Mã Người Dùng</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="userID"
+                    placeholder="Nhập ID"
+                    value=""
+                  />
+                  <div id="invalidID" class="invalid-feedback"></div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="userName">Họ Tên</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="userName"
+                    placeholder="Nhập họ và tên"
+                  />
+                  <div id="invalidName" class="invalid-form"></div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="userAddress">Địa chỉ</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="userAddress"
+                    placeholder="Nhập địa chỉ"
+                  />
+                  <div id="invalidAddress" class="invalid-form"></div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="userEmail">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="userEmail"
+                    placeholder="Nhập email"
+                  />
+                  <div id="invalidEmail" class="invalid-form"></div>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <label for="userType">Loại Người Dùng</label>
+                  <select class="form-select d-block w-100" id="userType">
+                    <option value="">Chọn loại</option>
+                    <option value="student">Học sinh</option>
+                    <option value="employee">Nhân viên</option>
+                    <option value="customer">Khách hàng</option>
+                  </select>
+                  <div id="invalidType" class="invalid-feedback"></div>
+                </div>
+                <!-- Student type -->
+                <div class="col-md-4 mb-3 d-none inputField" id="divMath">
+                  <label for="mathScore">Điểm Toán</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="mathScore"
+                    placeholder="Nhập điểm"
+                    value=""
+                  />
+                  <div id="invalidMathScore" class="invalid-feedback"></div>
+                </div>
+                <div class="col-md-4 mb-3 d-none inputField" id="divPhysic">
+                  <label for="physicScore">Điểm Lý</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="physicScore"
+                    placeholder="Nhập điểm"
+                    value=""
+                  />
+                  <div id="invalidPhysicScore" class="invalid-feedback"></div>
+                </div>
+                <div class="col-md-4 mb-3 d-none inputField" id="divChemistry">
+                  <label for="chemistryScore">Điểm Hóa</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="chemistryScore"
+                    placeholder="Nhập điểm"
+                    value=""
+                  />
+                  <div
+                    id="invalidChemistryScore"
+                    class="invalid-feedback"
+                  ></div>
+                </div>
+                <!-- Employee type -->
+                <div class="col-md-6 mb-3 d-none inputField" id="divWorkingDay">
+                  <label for="workingDays">Số Ngày Làm Việc</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="workingDays"
+                    placeholder="Nhập số ngày làm việc"
+                    value=""
+                  />
+                  <div id="invalidWorkingDays" class="invalid-feedback"></div>
+                </div>
+                <div class="col-md-6 mb-3 d-none inputField" id="divSalary">
+                  <label for="salary">Lương Theo Ngày</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="salary"
+                    placeholder="Nhập lương theo ngày"
+                    value=""
+                  />
+                  <div id="invalidSalary" class="invalid-feedback"></div>
+                </div>
+                <!-- Customer type -->
+                <div
+                  class="col-md-6 mb-3 d-none inputField"
+                  id="divCompanyName"
+                >
+                  <label for="companyName">Tên Công Ty</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="companyName"
+                    placeholder="Nhập tên công ty"
+                    value=""
+                  />
+                  <div id="invalidCompanyName" class="invalid-feedback"></div>
+                </div>
+                <div class="col-md-6 mb-3 d-none inputField" id="divBill">
+                  <label for="bill">Trị Giá Hóa Đơn</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="bill"
+                    placeholder="Nhập trị giá hóa đơn"
+                    value=""
+                  />
+                  <div id="invalidBill" class="invalid-feedback"></div>
+                </div>
+                <div class="col-md-12 mb-3 d-none inputField" id="divEvaluate">
+                  <label for="evaluate">Đánh Giá</label>
+                  <textarea
+                    class="form-control"
+                    id="evaluate"
+                    rows="3"
+                  ></textarea>
+                  <div id="invalidEvaluate" class="invalid-feedback"></div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  id="btnCapNhat"
+                  onclick="updateUser()"
+                >
+                  Cập Nhật
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-warning"
+                  id="btnThemNguoiDung"
+                >
+                  Thêm
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+      integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Javascript -->
+    <script type="module" src="./controllers/index.js"></script>
+  </body>
+</html>
